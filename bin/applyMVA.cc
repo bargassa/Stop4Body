@@ -140,13 +140,13 @@ int main(int argc, char** argv)
   Float_t Njet, NbLoose, NbTight, LepID, LepChg, Nevt, Event;
   Float_t JetHBCSV;
   //Int_t nGoodMu, nGoodEl;
-  //Float_t LepSip3, LepIso03, LepIso04, HT25, HT30, DPhiJet1Jet2,
+  //Float_t LepSip3, LepIso03, LepIso04, DPhiJet1Jet2,
 
   // Base BDT
   reader->AddVariable("Jet1Pt", &Jet1Pt);
   reader->AddVariable("mt_old", &mt_old);
   reader->AddVariable("Met", &Met);
-  reader->AddVariable("LepChg", &LepChgf);
+  reader->AddVariable("LepChg", &LepChg);
   reader->AddVariable("LepEta", &LepEta);
   reader->AddVariable("LepPt", &LepPt);
   reader->AddVariable("JetHBpt", &JetHBpt);
