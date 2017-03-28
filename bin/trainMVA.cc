@@ -106,28 +106,33 @@ int main(int argc, char** argv)
 
   // Base BDT
   factory->AddVariable("Jet1Pt",'F');
-  factory->AddVariable("mt",'F');
+  factory->AddVariable("mt_old",'F');
   factory->AddVariable("Met",'F');
   factory->AddVariable("LepChg",'F');
   factory->AddVariable("LepEta",'F');
   factory->AddVariable("LepPt",'F');
   factory->AddVariable("JetHBpt",'F');
   factory->AddVariable("DrJetHBLep",'F');
-  //factory->AddVariable("Njet",'F');
-  factory->AddVariable("Njet30",'F');
-  //factory->AddVariable("HT20",'F');
-  factory->AddVariable("HT30",'F');
-  //factory->AddVariable("NbLoose20",'F');
-  factory->AddVariable("NbLoose30",'F');
-  factory->AddVariable("JetHBCSV", 'F');
 
-  // Other variables
-  //factory->AddVariable("Q80",'F');
-  //factory->AddVariable("CosDeltaPhi",'F');
-  //factory->AddVariable("Jet2Pt",'F');
-  //factory->AddVariable("JetLepMass",'F');
-  //factory->AddVariable("J3Mass",'F');
-  //factory->AddVariable("DrJet1Lep",'F');
+  factory->AddVariable("Njet",'F');
+  factory->AddVariable("HT",'F');
+  factory->AddVariable("NbLoose",'F');
+
+  //  factory->AddVariable("NbLooseTo50",'F');
+  //  factory->AddVariable("NbLoose50",'F');
+  //  factory->AddVariable("NbMediumTo50",'F');
+  //  factory->AddVariable("NbMedium50",'F');
+  //  factory->AddVariable("NbTightTo50",'F');
+  //  factory->AddVariable("NbTight50",'F');
+  factory->AddVariable("JetHBCSV",'F');
+  //  factory->AddVariable("JetLepMass",'F');
+  //  factory->AddVariable("J3Mass",'F');
+  //  factory->AddVariable("Jet1Eta",'F');
+  //  factory->AddVariable("DrJet1Lep",'F');
+  //  factory->AddVariable("DrJet1Jet2",'F');
+  //  factory->AddVariable("Q80_old",'F');
+  //  factory->AddVariable("CosDeltaPhi_old",'F');
+
 
   TFile *inputsignal = TFile::Open( signalFileName.c_str() );
   TFile *inputbkg= TFile::Open( backgroundFileName.c_str() );
@@ -173,10 +178,10 @@ int main(int argc, char** argv)
   factory->SetBackgroundWeightExpression( "XS/Nevt" );
   factory->SetSignalWeightExpression("1/Nevt");
 
-  TCut mycuts = "Met > 100";
-  TCut mycutb = "Met > 100";
-  mycuts = "(LepPt < 30.) && (Jet1Pt > 110.) && (Met > 280)";
-  mycutb = "(LepPt < 30.) && (Jet1Pt > 110.) && (Met > 280)";
+  TCut mycuts  = "(LepPt < 30.) && (Jet1Pt > 110.) && (Met > 280) && (HT > 200.)";
+  TCut mycutb  = "(LepPt < 30.) && (Jet1Pt > 110.) && (Met > 280) && (HT > 200.)";
+  //  TCut mycuts  = "(LepPt < 10000.) && (Jet1Pt > 110.) && (Met > 280) && (HT > 200.)";
+  //  TCut mycutb  = "(LepPt < 10000.) && (Jet1Pt > 110.) && (Met > 280) && (HT > 200.)";
 
   factory->PrepareTrainingAndTestTree( mycuts, mycutb, "nTrain_Signal=0:nTrain_Background=0:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=EqualNumEvents" );
 
@@ -188,7 +193,7 @@ int main(int argc, char** argv)
   if (Use["BDT"])  // Adaptive Boost
   {
     factory->BookMethod( TMVA::Types::kBDT, "BDT",
-                         "!H:!V:NTrees=400:MinNodeSize=2.5%:MaxDepth=3:BoostType=AdaBoost:SeparationType=GiniIndex:nCuts=20:PruneMethod=NoPruning:VarTransform=D" );
+                         "!H:!V:NTrees=400:MaxDepth=3:MinNodeSize=2.5%:VarTransform=D:BoostType=AdaBoost:SeparationType=GiniIndex:nCuts=20:PruneMethod=NoPruning" );
     /*for(int i = 1; i <= 20; ++i)
     {
       double val = i/2.0;
