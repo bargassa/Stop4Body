@@ -441,8 +441,10 @@ void DataCard_Factory (){
 	    << " " << (STTpup/STT) << "/" << (STTpum/STT) << " " << (DYTpup/DYT) << "/" << (DYTpum/DYT) << " " << (TTXpup/TTX) 
 	    << "/" << (TTXpum/TTX) << std::endl;
     outFile << "JESR   lnN 1.04 - - - 1.04 1.04 1.04 1.04" << std::endl;
-    outFile << "ID     lnN " << (SIGNALidp/SIGNAL)  << "/" << (SIGNALidm/SIGNAL) <<  " - - - 1.03 1.03 1.03 1.03" << std::endl;
-    outFile << "ISO    lnN " << (SIGNALisop/SIGNAL) << "/" << (SIGNALisom/SIGNAL) << " - - - 1.02 1.02 1.02 1.02" << std::endl;
+    //    outFile << "ID     lnN " << (SIGNALidp/SIGNAL)  << "/" << (SIGNALidm/SIGNAL) <<  " - - - 1.03 1.03 1.03 1.03" << std::endl;
+    //    outFile << "ISO    lnN " << (SIGNALisop/SIGNAL) << "/" << (SIGNALisom/SIGNAL) << " - - - 1.02 1.02 1.02 1.02" << std::endl;
+    outFile << "ID     lnN 1.03 - - - 1.03 1.03 1.03 1.03" << std::endl;
+    outFile << "ISO    lnN 1.02 - - - 1.02 1.02 1.02 1.02" << std::endl;
     outFile << "SISR1  lnN " << (sISR1pS/SIGNAL) << "/" << (sISR1mS/SIGNAL) << " - - - - - - -" << std::endl;
     outFile << "SISR2  lnN " << (sISR2pS/SIGNAL) << "/" << (sISR2mS/SIGNAL) << " - - - - - - -" << std::endl;
     outFile << "SISR3  lnN " << (sISR3pS/SIGNAL) << "/" << (sISR3mS/SIGNAL) << " - - - - - - -" << std::endl;
@@ -686,7 +688,7 @@ void GetSysISR(
     ProcFile.Draw("Njet>>sISR6m","weight_EWKISRweight_Bin6_Down*splitFactor"*Coupure);
     ProcFile.Draw("Njet>>sISR7m","weight_EWKISRweight_Bin7_Down*splitFactor"*Coupure);
   }
-  if ((pc==pc)||(pc=="TTbar")){
+  else if ((pc==pc)||(pc=="TTbar")){
     ProcFile.Draw("Njet>>sISR1p","weight_ISRweight_Bin1_Up*splitFactor"*Coupure);
     ProcFile.Draw("Njet>>sISR2p","weight_ISRweight_Bin2_Up*splitFactor"*Coupure);
     ProcFile.Draw("Njet>>sISR3p","weight_ISRweight_Bin3_Up*splitFactor"*Coupure);
