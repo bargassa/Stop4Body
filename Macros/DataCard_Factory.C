@@ -146,21 +146,34 @@ void DataCard_Factory (){
   if (idm=="70"){ BDT = "BDT>0.46"; }
   if (idm=="80"){ BDT = "BDT>0.44"; }
 
+  // 3 JES-varied serie of cuts on jet-related variables
+  // Central JES
   TCut ISRjet = "Jet1Pt>110.";
   TCut dphij1j2 = "(DPhiJet1Jet2 < 2.5)||(Jet2Pt<60.)";
   TCut met    = "Met>280.";
   TCut HT = "HT > 200.";
+  // +1 JES
+  TCut ISRjetjp = "Jet1Pt>110.";
+  TCut metjp    = "Met>280.";
+  TCut HTjp = "HT > 200.";
+  // -1 JES
+  TCut ISRjetjm = "Jet1Pt>110.";
+  TCut metjm    = "Met>280.";
+  TCut HTjm = "HT > 200.";
 
+  // 3 JES-varied preselection
   TCut presel = singlep+lept+ISRjet+dphij1j2+met+HT;
+  TCut preseljp = singlep+lept+ISRjetjp+dphij1j2+metjp+HTjp;
+  TCut preseljm = singlep+lept+ISRjetjm+dphij1j2+metjm+HTjm;
 
-  // Final selection
+  // 3 JES-varied final selection
   TCut Coup   = presel;
-  TCut Coupjp = presel;
-  TCut Coupjm = presel;
+  TCut Coupjp = preseljp;
+  TCut Coupjm = preseljm;
   // For background: Take only the prompt component
   TCut CoupB   = Promp+presel;
-  TCut CoupBjp = Promp+presel;
-  TCut CoupBjm = Promp+presel;
+  TCut CoupBjp = Promp+preseljp;
+  TCut CoupBjm = Promp+preseljm;
 
   //////////////////////////////////////////////////////////////////////////
 
