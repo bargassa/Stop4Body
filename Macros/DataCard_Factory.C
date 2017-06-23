@@ -377,9 +377,13 @@ void DataCard_Factory (){
   double VVT = WW+WZ+ZZ;
   double VVTpup = WWpup+WZpup+ZZpup;
   double VVTpum = WWpum+WZpum+ZZpum;
+  double VVTp = WWp+WZp+ZZp;
+  double VVTm = WWm+WZm+ZZm;
   double STT = sTw+sTtC+sTBw+sTBtC;
   double STTpup = sTwpup+sTtCpup+sTBwpup+sTBtCpup;
   double STTpum = sTwpum+sTtCpum+sTBwpum+sTBtCpum;
+  double STTp = sTwp+sTtCp+sTBwp+sTBtCp;
+  double STTm = sTwm+sTtCm+sTBwm+sTBtCm;
   double DYT = DY1+DY2+DY3+DY4+DY5+DY6+DY7+DY8+DY9+DY10+DY11;
   double sISR1pDYT = sISR1pDY1+sISR1pDY2+sISR1pDY3+sISR1pDY4+sISR1pDY5+sISR1pDY6+sISR1pDY7+sISR1pDY8+sISR1pDY9+sISR1pDY10+sISR1pDY11;
   double sISR2pDYT = sISR1pDY2+sISR2pDY2+sISR2pDY3+sISR2pDY4+sISR2pDY5+sISR2pDY6+sISR2pDY7+sISR2pDY8+sISR2pDY9+sISR2pDY10+sISR2pDY11;
@@ -397,9 +401,13 @@ void DataCard_Factory (){
   double sISR7mDYT = sISR1mDY7+sISR7mDY2+sISR7mDY3+sISR7mDY4+sISR7mDY5+sISR7mDY6+sISR7mDY7+sISR7mDY8+sISR7mDY9+sISR7mDY10+sISR7mDY11;
   double DYTpup = DY1pup+DY2pup+DY3pup+DY4pup+DY5pup+DY6pup+DY7pup+DY8pup+DY9pup+DY10pup+DY11pup;
   double DYTpum = DY1pum+DY2pum+DY3pum+DY4pum+DY5pum+DY6pum+DY7pum+DY8pum+DY9pum+DY10pum+DY11pum;
+  double DYTp = DY1p+DY2p+DY3p+DY4p+DY5p+DY6p+DY7p+DY8p+DY9p+DY10p+DY11p;
+  double DYTm = DY1m+DY2m+DY3m+DY4m+DY5m+DY6m+DY7m+DY8m+DY9m+DY10m+DY11m;
   double TTX = TTgj+TTwl+TTwqq+TTzl+TTzl1m10+TTzqq;
   double TTXpup = TTgjpup+TTwlpup+TTwqqpup+TTzlpup+TTzl1m10pup+TTzqqpup;
   double TTXpum = TTgjpum+TTwlpum+TTwqqpum+TTzlpum+TTzl1m10pum+TTzqqpum;
+  double TTXp = TTgjp+TTwlp+TTwqqp+TTzlp+TTzl1m10p+TTzqqp;
+  double TTXm = TTgjm+TTwlm+TTwqqm+TTzlm+TTzl1m10m+TTzqqm;
   double bckg  = DDwj + DDtt + DDfk + VVT + STT + DYT + TTX;
 
   double eBMC = sqrt(pow(eWW,2)+pow(eWZ,2)+pow(eZZ,2)+pow(esTw,2)+pow(esTtC,2)+pow(esTBw,2)+pow(esTBtC,2)+
@@ -453,7 +461,10 @@ void DataCard_Factory (){
     outFile << "PU     lnN " << (SIGNALpup/SIGNAL) << "/" << (SIGNALpum/SIGNAL) << " - - - " << (VVTpup/VVT) << "/" << (VVTpum/VVT) 
 	    << " " << (STTpup/STT) << "/" << (STTpum/STT) << " " << (DYTpup/DYT) << "/" << (DYTpum/DYT) << " " << (TTXpup/TTX) 
 	    << "/" << (TTXpum/TTX) << std::endl;
-    outFile << "JESR   lnN 1.04 - - - 1.04 1.04 1.04 1.04" << std::endl;
+    //    outFile << "JESR   lnN 1.04 - - - 1.04 1.04 1.04 1.04" << std::endl;
+    outFile << "JESR   lnN " << (SIGNALp/SIGNAL) << "/" << (SIGNALp/SIGNAL) << " - - - " << 
+      (VVTp/VVT) << "/" << (VVTm/VVT) << " " << (STTp/STT) << "/" << (STTm/STT) << " " << (DYTp/DYT) << "/" << (DYTm/DYT) << 
+      (TTXp/TTX) << "/" << (TTXm/TTX) << std::endl;
     //    outFile << "ID     lnN " << (SIGNALidp/SIGNAL)  << "/" << (SIGNALidm/SIGNAL) <<  " - - - 1.03 1.03 1.03 1.03" << std::endl;
     //    outFile << "ISO    lnN " << (SIGNALisop/SIGNAL) << "/" << (SIGNALisom/SIGNAL) << " - - - 1.02 1.02 1.02 1.02" << std::endl;
     outFile << "ID     lnN 1.03 - - - 1.03 1.03 1.03 1.03" << std::endl;
